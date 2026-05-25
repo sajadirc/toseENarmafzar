@@ -6,5 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    //
+    protected $guarded = [];
+
+    #User Relation
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    #news Relation
+    public function news(){
+        return $this->belongsTo(News::class);
+    }
 }
