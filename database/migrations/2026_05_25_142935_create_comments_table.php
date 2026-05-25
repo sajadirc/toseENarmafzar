@@ -11,27 +11,28 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            #title Column
-            $table->string('title');
 
-            #short Desc Column
-            $table->text('summary')->nullable();
+            #comment
+            $table->string('content');
 
-            #desc Col
-            $table->text('desc');
+            #Foreign With news ID
+            $table->bigInteger('news_id')->unsigned();
 
-            #user_id foriegn with user ID
+            #Foreign With User ID
             $table->bigInteger('user_id')->unsigned();
 
-            #imageUploader pass can be Null
-            $table->string('image_url')->nullable();
+            #Status Of Table
+            $table->tinyInteger('status')->default(0)->comment('0:pending,1:accept,2:reject');
 
             $table->timestamps();
 
-            #foreign For user relation
+
+            #Foreign Key Relation
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('news_id')->references('id')->on('news');
+            
         });
     }
 
@@ -40,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('comments');
     }
 };
