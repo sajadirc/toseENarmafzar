@@ -3,5 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    // echo 'نسخه اولیه سایت خبری';
+    return view('home.home');
+    // return view('home');
 });
