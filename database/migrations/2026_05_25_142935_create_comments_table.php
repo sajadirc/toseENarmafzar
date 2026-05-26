@@ -28,11 +28,10 @@ return new class extends Migration
 
             $table->timestamps();
 
-
             #Foreign Key Relation
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('news_id')->references('id')->on('news');
-            
+
         });
     }
 
