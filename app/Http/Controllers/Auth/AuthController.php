@@ -49,7 +49,6 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required',
             'type' => 'required|in:user,author'
-
         ]);
 
 
