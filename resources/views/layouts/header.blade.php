@@ -8,3 +8,4 @@
     @yield('styles')
 </head>
 <body>
+@include('Errors.Error')
