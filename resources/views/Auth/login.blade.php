@@ -18,7 +18,7 @@
                     <input class="form-control" type="password" name="password" id="password">
 
                     <div class="d-flex justify-content-between align-item-center">
-                        <a class="mt-2" href="{{ route('login.index') }}">ثبت نام</a>
+                        <a class="mt-2" href="{{ route('register.index') }}">ثبت نام</a>
                         <button class="btn btn-success mt-3" type="submit">ورود</button>
                     </div>
                 </form>

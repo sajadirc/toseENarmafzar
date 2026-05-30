@@ -18,4 +18,13 @@ Route::prefix('auth')->group(function(){
 
         Route::post('',[AuthController::class,'login'])->name('login.store');
     });
+
+    #Register Routes
+    Route::prefix('register')->group(function(){
+
+        #Register Page Here
+        Route::get('',[AuthController::class,'register_index'])->name('register.index');
+
+        Route::post('',[AuthController::class, 'register'])->name('register.store');
+    });
 });

@@ -18,11 +18,12 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+
+    // protected $fillable = [
+    //     'name',
+    //     'email',
+    //     'password',
+    // ];
 
     protected $guarded = [];
     /**
@@ -49,7 +50,27 @@ class User extends Authenticatable
     }
 
     #user news relation
-    public function news(){
+    public function news()
+    {
         return $this->hasMany(News::class);
+    }
+
+
+    # func check user is normal user
+    public function isUser()
+    {
+        return $this->type === 0;
+    }
+
+    #is func check user is Author user
+    public function isAuthor()
+    {
+        return $this->type === 1;
+    }
+
+    #func check user is owner admin user
+    public function isAdmin()
+    {
+        return $this->type === 2;
     }
 }
