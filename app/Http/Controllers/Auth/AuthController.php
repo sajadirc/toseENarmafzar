@@ -33,10 +33,13 @@ class AuthController extends Controller
         ]);
 
         #Auth Attemp
-        $result = Auth::attempt($request->all(), 1);
+        // $result = Auth::attepmt();
+        $result = Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password
+        ], 1);
 
-        dd($result);
-        dd($request->all());
+        return redirect()->route('home')->with('success','خوش آمدید');
     }
 
     #Register Logic
@@ -51,7 +54,7 @@ class AuthController extends Controller
             'type' => 'required|in:user,author'
         ]);
 
-        
+
         $type = $request->type == 'author' ? 1 : 0;
         // dd($type);
         $result = User::create([
@@ -61,16 +64,15 @@ class AuthController extends Controller
             'password' => $request->password,
         ]);
 
-        if($result && $result->isAuthor())
-            return back()->with('success','نویسنده');
+        Auth::login($result, 1);
 
-        if($result && $result->isUser())
-            return back()->with('success','کاربر');
+        if ($result && $result->isAuthor())
+            return back()->with('success', 'نویسنده');
 
-        if($result && $result->isAdmin())
-            return back()->with('success','ادمین');
-        dd($result);
+        if ($result && $result->isUser())
+            return back()->with('success', 'کاربر');
 
-
+        if ($result && $result->isAdmin())
+            return back()->with('success', 'ادمین');
     }
 }

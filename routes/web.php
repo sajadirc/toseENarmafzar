@@ -5,9 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     // echo 'نسخه اولیه سایت خبری';
-    return view('home.home')->name('home');
+    return view('home.home');
     // return view('home');
-});
+})->name('home');
 
 #Auth Routes
 Route::prefix('auth')->group(function(){

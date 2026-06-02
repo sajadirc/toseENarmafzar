@@ -8,4 +8,14 @@
     @yield('styles')
 </head>
 <body>
+    @auth
+        <div class="d-flex justify-content-start align-item-center p-3">
+            <div class="right">
+                <h6 class="mt-4 me-3">{{ auth()->user()->name }} خوش آمدید</h6>
+            </div>
+            <div class="left">
+                <a href="" class="btn btn-danger mt-3">خروج</a>
+            </div>
+        </div>
+    @endauth
 @include('Errors.Error')
