@@ -9,6 +9,7 @@ Route::get('/', function () {
     // return view('home');
 })->name('home');
 
+
 #Auth Routes
 Route::prefix('auth')->group(function(){
 

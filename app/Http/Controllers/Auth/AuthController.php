@@ -67,20 +67,20 @@ class AuthController extends Controller
         Auth::login($result, 1);
 
         if ($result && $result->isAuthor())
-            return back()->with('success', 'نویسنده');
+            return redirect()->route('home')->with('success', 'نویسنده');
 
         if ($result && $result->isUser())
-            return back()->with('success', 'کاربر');
+            return redirect()->route('home')->with('success', 'کاربر');
 
         if ($result && $result->isAdmin())
-            return back()->with('success', 'ادمین');
+            return redirect()->route('home')->with('success', 'ادمین');
     }
 
     // logout func
     public function logout()
     {
         Auth::logout();
-        
+
         session_reset();
 
         return back()->with('success', 'شما با موفقیت خارج شدید');
