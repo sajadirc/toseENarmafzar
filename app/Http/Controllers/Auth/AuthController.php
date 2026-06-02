@@ -39,7 +39,7 @@ class AuthController extends Controller
             'password' => $request->password
         ], 1);
 
-        return redirect()->route('home')->with('success','خوش آمدید');
+        return redirect()->route('home')->with('success', 'خوش آمدید');
     }
 
     #Register Logic
@@ -74,5 +74,15 @@ class AuthController extends Controller
 
         if ($result && $result->isAdmin())
             return back()->with('success', 'ادمین');
+    }
+
+    // logout func
+    public function logout()
+    {
+        Auth::logout();
+        
+        session_reset();
+
+        return back()->with('success', 'شما با موفقیت خارج شدید');
     }
 }

@@ -27,4 +27,7 @@ Route::prefix('auth')->group(function(){
 
         Route::post('',[AuthController::class, 'register'])->name('register.store');
     });
+
+    #logOut Route
+    Route::get('logout',[AuthController::class, 'logout'])->name('auth.logout');
 });
