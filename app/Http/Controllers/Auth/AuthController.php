@@ -51,6 +51,25 @@ class AuthController extends Controller
             'type' => 'required|in:user,author'
         ]);
 
+        
+        $type = $request->type == 'author' ? 1 : 0;
+        // dd($type);
+        $result = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'type' => $type,
+            'password' => $request->password,
+        ]);
+
+        if($result && $result->isAuthor())
+            return back()->with('success','نویسنده');
+
+        if($result && $result->isUser())
+            return back()->with('success','کاربر');
+
+        if($result && $result->isAdmin())
+            return back()->with('success','ادمین');
+        dd($result);
 
 
     }
