@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,10 @@ Route::prefix('auth')->group(function(){
 
     #logOut Route
     Route::get('logout',[AuthController::class, 'logout'])->name('auth.logout');
+});
+
+
+#Panel Routes
+Route::prefix('panel')->group(function(){
+    Route::get('',[AdminPanelController::class,'index'])->name('panel.index');
 });

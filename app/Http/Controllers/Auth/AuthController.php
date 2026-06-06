@@ -39,6 +39,11 @@ class AuthController extends Controller
             'password' => $request->password
         ], 1);
 
+        // dd(auth()->user()->isAdmin());
+        $user = Auth::user();
+        if($user->isAdmin() || $user->isAuthor())
+            return redirect()->route('panel.index')->with('success','خوش آمدید');
+
         return redirect()->route('home')->with('success', 'خوش آمدید');
     }
 
