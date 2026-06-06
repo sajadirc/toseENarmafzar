@@ -84,10 +84,15 @@ class AuthController extends Controller
     // logout func
     public function logout()
     {
+        $isUser = Auth::user()->isUser();
+
         Auth::logout();
 
         session_reset();
 
+        if(!$isUser)
+            return redirect()->route('home')->with('success','شما با موفقیت خارج شدید');
+        
         return back()->with('success', 'شما با موفقیت خارج شدید');
     }
 }

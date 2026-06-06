@@ -1,10 +1,10 @@
 @include('layouts.panel.header')
 <div class="container">
-    <div class="row">
-        <div class="col-md-3">
+    <div class="row bg-dark text-light">
+        <div class="col-md-3 p-2">
             @include('layouts.panel.sideBar')
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 p-2 mt-2">
             @yield('content')
 
         </div>
