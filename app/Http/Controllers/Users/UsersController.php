@@ -50,11 +50,12 @@ class UsersController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'type' => $request->type
+            'type' => $request->type,
+            'is_verified' => true
         ]);
 
         if($user)
-            return back()->with('success','کاربر با موفقیت ساخته شد');
+            return redirect()->route('panel.users.index')->with('success','کاربر با موفقیت ساخته شد');
         return back()->with('failed','خطا در افزودن کاربر');
     }
 }
