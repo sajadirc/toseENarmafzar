@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Users\UsersController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -38,4 +39,8 @@ Route::prefix('auth')->group(function(){
 #Panel Routes
 Route::prefix('panel')->group(function(){
     Route::get('',[AdminPanelController::class,'index'])->name('panel.index');
+
+    Route::prefix('users')->group(function(){
+        Route::get('',[UsersController::class,'index'])->name('panel.users.index');
+    });
 });

@@ -25,10 +25,14 @@
                         data-bs-parent="#accordionExample">
 
                         <div class="accordion-body">
-                            <a href="">افزودن کاربر</a>
+                            <a href="">
+                                <i class="fa-solid fa-user-plus pe-1"></i>
+                                افزودن کاربر</a>
                         </div>
                         <div class="accordion-body">
-                            <a href="">لیست کاربران</a>
+                            <a href="{{ route('panel.users.index') }}">
+                                <i class="fa-solid fa-user-group  pe-1"></i>
+                                لیست کاربران</a>
                         </div>
 
                     </div>
