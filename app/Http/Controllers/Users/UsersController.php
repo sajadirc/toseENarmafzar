@@ -34,4 +34,17 @@ class UsersController extends Controller
     public function add(){
         return view('panel.Users.add');
     }
+
+    // Store User func
+    public function store(Request $request){
+        $request->validate([
+            'name'=> 'required|string',
+            'email' => 'email|unique:users,email',
+            'password' => 'required',
+            'type' => 'required|in:0,1,2'
+        ]);
+
+        
+        dd($request->all());
+    }
 }

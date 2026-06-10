@@ -50,6 +50,7 @@ Route::prefix('panel')->group(function(){
         #user Add Routes
         Route::prefix('add')->group(function(){
             Route::get('',[UsersController::class,'add'])->name('panel.users.add');
+            Route::post('',[UsersController::class, 'store'])->name('panel.users.store');
         });
     });
 });

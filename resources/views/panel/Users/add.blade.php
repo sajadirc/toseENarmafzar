@@ -3,7 +3,7 @@
 @section('content')
     <div class="bg-light rounded p-3">
         <h4 class="border-start border-primary border-4  text-dark p-2 ps-1 h-6 ms-1  mb-4 fw-bold">افزودن کاربر</h4>
-        <form class="form-control form p-2 " action="" method="post">
+        <form class="form-control form p-2 " action="{{ route('panel.users.store') }}" method="post">
             @csrf
 
             {{-- name here --}}
@@ -25,21 +25,21 @@
             {{-- role type --}}
             <div class="d-flex">
                 <div class="form-check mx-2">
-                    <input class="form-check-input" type="radio" name="type" id="user" checked>
+                    <input class="form-check-input" type="radio" name="type" id="user" checked value="0">
                     <label class="form-check-label" for="user">
                         کاربر
                     </label>
                 </div>
 
                 <div class="form-check mx-2">
-                    <input class="form-check-input" type="radio" name="type" id="writer">
+                    <input class="form-check-input" type="radio" name="type" id="writer" value="1">
                     <label class="form-check-label" for="writer">
                         نویسنده
                     </label>
                 </div>
 
                 <div class="form-check mx-2">
-                    <input class="form-check-input" type="radio" name="type" id="admin">
+                    <input class="form-check-input" type="radio" name="type" id="admin" value="2">
                     <label class="form-check-label" for="admin">
                         مدیر
                     </label>
