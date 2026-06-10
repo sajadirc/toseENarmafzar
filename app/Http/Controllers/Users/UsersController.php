@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserInPanelRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -36,15 +37,11 @@ class UsersController extends Controller
     }
 
     // Store User func
-    public function store(Request $request){
-        $request->validate([
-            'name'=> 'required|string',
-            'email' => 'email|unique:users,email',
-            'password' => 'required',
-            'type' => 'required|in:0,1,2'
-        ]);
+    public function store(UserInPanelRequest $request){
 
-        
+
+        $validated_data = $request->validated();
+
         dd($request->all());
     }
 }
