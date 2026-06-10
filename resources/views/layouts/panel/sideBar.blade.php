@@ -2,44 +2,52 @@
 
     {{-- #top data --}
         {{-- Top logout Btn --}}
-        <div class="d-flex justify-content-around m-2">
-            <h1 class="fs-4 text-center">پنل <span class="text-danger">ادمین</span></h1>
-            <a href="{{ route('auth.logout') }}" class="btn btn-sm btn-danger">خروج</a>
+    <div class="d-flex justify-content-around m-2">
+        <h1 class="fs-4 text-center">پنل <span class="text-danger">ادمین</span></h1>
+        <a href="{{ route('auth.logout') }}" class="btn btn-sm btn-danger">خروج</a>
+    </div>
+    <h3 class="fs-5 mt-2  p-2 fw-normal">کاربر <span class="fw-bold">{{ auth()->user()->name }}</span> خوش آمدید</h2>
+        <p class="text-center">نقش: <span>{{ auth()->user()->isAdmin() ? 'مدیر' : 'نویسنده' }}</span></p>
+
+        {{-- menu here --}}
+
+        <div class="menu">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="fa fa-user pe-2"></i>
+                            مدیریت کاربران
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample">
+
+                        <div class="accordion-body">
+                            <a href="">افزودن کاربر</a>
+                        </div>
+                        <div class="accordion-body">
+                            <a href="">لیست کاربران</a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            تست 2
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <p>تست 2</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-        <h3 class="fs-5 mt-2  p-2 fw-normal">کاربر <span class="fw-bold">{{ auth()->user()->name }}</span> خوش آمدید</h2>
-            <p class="text-center">نقش: <span>{{ auth()->user()->isAdmin() ? 'مدیر' : 'نویسنده' }}</span></p>
-
-    {{-- menu here --}}
-
-    <div class="menu">
-<div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        ثبت نام
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <a href="">تست</a>
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        تست 2
-      </button>
-    </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <p>تست 2</p>
-      </div>
-    </div>
-  </div>
-
 </div>
-    </div>
-</div>
-
-
