@@ -25,7 +25,7 @@
                         data-bs-parent="#accordionExample">
 
                         <div class="accordion-body">
-                            <a href="">
+                            <a href="{{ route('panel.users.add') }}">
                                 <i class="fa-solid fa-user-plus pe-1"></i>
                                 افزودن کاربر</a>
                         </div>

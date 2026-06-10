@@ -27,6 +27,11 @@ class UsersController extends Controller
         if($result)
             return back()->with('success','کاربر با موفقیت حذف شد');
         return back()->with('failed','خطا در حذف کاربر');
-        
+
+    }
+
+    #Add User View Here
+    public function add(){
+        return view('panel.Users.add');
     }
 }
