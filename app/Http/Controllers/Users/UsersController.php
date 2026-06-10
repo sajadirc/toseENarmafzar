@@ -13,4 +13,20 @@ class UsersController extends Controller
         $users = User::orderByDesc('created_at')->paginate(10);
         return view('panel.Users.all',compact('users'));
     }
+
+
+    #Delete user Here
+    public function destroy(int $id){
+        #Find User
+        $user = User::findOrFail($id);
+
+        #delete User
+        $result = $user->delete();
+
+        #return Response
+        if($result)
+            return back()->with('success','کاربر با موفقیت حذف شد');
+        return back()->with('failed','خطا در حذف کاربر');
+        
+    }
 }

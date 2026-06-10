@@ -41,6 +41,15 @@ Route::prefix('panel')->group(function(){
     Route::get('',[AdminPanelController::class,'index'])->name('panel.index');
 
     Route::prefix('users')->group(function(){
+        #users list ROute
         Route::get('',[UsersController::class,'index'])->name('panel.users.index');
+
+        #user Delete Route
+        Route::delete('{user_id}/delete',[UsersController::class,'destroy'])->name('panel.users.destroy');
+
+        #user Add Routes
+        Route::prefix('add')->group(function(){
+            // Route::get('')
+        });
     });
 });

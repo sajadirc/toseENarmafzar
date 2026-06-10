@@ -10,6 +10,7 @@
                     <th>نام</th>
                     <th>ایمیل</th>
                     <th>نقش</th>
+                    <th>تایید شده</th>
                     <th>عملیات</th>
                 </tr>
             </thead>
@@ -34,13 +35,22 @@
 
                             @default
                         @endswitch
+                        <td>{{ $user->is_verified ? 'بله' : 'خیر' }}</td>
+                        <td class="d-flex justify-content-center">
+                            <a href="" class="btn btn-sm btn-primary me-1"><i class="fa fa-pen me-1"></i></a>
+                            <form action="{{ route('panel.users.destroy', $user->id) }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fa fa-trash me-1"></i></button>
 
-                        <td class="">
-                            <a href="" class="btn btn-sm btn-primary"><i class="fa fa-pen me-1"></i></a>
-                            <a href="" class="btn btn-sm btn-danger"><i class="fa fa-trash me-1"></i></a>
+                            </form>
+                            {{-- <a href="{{ route('panel.users.destroy', $user->id) }}" class="btn btn-sm btn-danger"><i
+                                    class="fa fa-trash me-1"></i></a> --}}
                         </td>
                     </tr>
                 @endforeach
+                {{ $users->links() }}
             </tbody>
         </table>
     </div>
