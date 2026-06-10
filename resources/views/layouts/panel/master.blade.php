@@ -11,3 +11,4 @@
     </div>
 </div>
 
+@include('layouts.panel.footer')
