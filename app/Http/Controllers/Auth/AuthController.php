@@ -41,6 +41,9 @@ class AuthController extends Controller
 
         // dd(auth()->user()->isAdmin());
         $user = Auth::user();
+        if(!$result)
+            return back()->with('failed','کلمه عبور اشتباه است');
+        
         if($user->isAdmin() || $user->isAuthor())
             return redirect()->route('panel.index')->with('success','خوش آمدید');
 
@@ -92,7 +95,7 @@ class AuthController extends Controller
 
         if(!$isUser)
             return redirect()->route('home')->with('success','شما با موفقیت خارج شدید');
-        
+
         return back()->with('success', 'شما با موفقیت خارج شدید');
     }
 }

@@ -54,8 +54,46 @@ class UsersController extends Controller
             'is_verified' => true
         ]);
 
-        if($user)
-            return redirect()->route('panel.users.index')->with('success','کاربر با موفقیت ساخته شد');
-        return back()->with('failed','خطا در افزودن کاربر');
+        if ($user)
+            return redirect()->route('panel.users.index')->with('success', 'کاربر با موفقیت ساخته شد');
+        return back()->with('failed', 'خطا در افزودن کاربر');
+    }
+
+    //Edit User Func
+    public function edit(int $user_id, Request $request)
+    {
+
+        $user = User::findOrFail($user_id);
+        return view('panel.Users.edit', compact('user'));
+        // dd($user);
+    }
+
+    //update User Func
+    public function update(int $user_id, Request $request)
+    {
+
+        #Find User
+        $user = User::findOrFail($user_id);
+
+        #vAlidate Request Data
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'password' => 'nullable',
+            'type' => 'required|in:0,1,2'
+        ]);
+
+        #upDate user info
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if($request->password)
+            $user->password = bcrypt($request->password);
+        $user->type = $request->type;
+        $result = $user->save();
+
+        #return response
+        if($result)
+            return back()->with('success','ویرایش با موفقیت انجام شد');
+        return back()->with('failed','خطا در ,dvhda کاربر');
     }
 }
