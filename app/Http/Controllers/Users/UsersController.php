@@ -80,7 +80,8 @@ class UsersController extends Controller
             'name' => 'required|string',
             'email' => 'required|email',
             'password' => 'nullable',
-            'type' => 'required|in:0,1,2'
+            'type' => 'required|in:0,1,2',
+            'is_verified' => 'in:0,1'
         ]);
 
         #upDate user info
@@ -89,6 +90,7 @@ class UsersController extends Controller
         if($request->password)
             $user->password = bcrypt($request->password);
         $user->type = $request->type;
+        $user->is_verified = $request->is_verified;
         $result = $user->save();
 
         #return response
