@@ -16,14 +16,14 @@ Route::get('/', function () {
 Route::prefix('auth')->group(function(){
 
     #Login Routes
-    Route::prefix('login')->group(function(){
+    Route::prefix('login')->middleware('guest')->group(function(){
         Route::get('',[AuthController::class,'login_index'])->name('login.index');
 
         Route::post('',[AuthController::class,'login'])->name('login.store');
     });
 
     #Register Routes
-    Route::prefix('register')->group(function(){
+    Route::prefix('register')->middleware('guest')->group(function(){
 
         #Register Page Here
         Route::get('',[AuthController::class,'register_index'])->name('register.index');
@@ -32,12 +32,12 @@ Route::prefix('auth')->group(function(){
     });
 
     #logOut Route
-    Route::get('logout',[AuthController::class, 'logout'])->name('auth.logout');
+    Route::get('logout',[AuthController::class, 'logout'])->name('auth.logout')->middleware('auth');
 });
 
 
 #Panel Routes
-Route::prefix('panel')->group(function(){
+Route::prefix('panel')->middleware('auth')->group(function(){
     Route::get('',[AdminPanelController::class,'index'])->name('panel.index');
 
     Route::prefix('users')->group(function(){
