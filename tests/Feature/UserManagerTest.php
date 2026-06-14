@@ -46,7 +46,6 @@ class UserManagerTest extends TestCase
             'type' => 'user'
         ]);
 
-
         #test Make user in users table
         $this->assertDatabaseHas('users', [
             'email' => 'test@test.ir'
