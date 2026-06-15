@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\TagsController;
 use App\Http\Controllers\Users\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,5 +59,13 @@ Route::prefix('panel')->middleware('auth')->group(function(){
             Route::get('',[UsersController::class,'edit'])->name('panel.users.edit');
             Route::put('',[UsersController::class,'update'])->name('panel.users.update');
         });
+    });
+
+
+    #tags RoUtes
+    Route::prefix('tags')->group(function(){
+        Route::get('',[TagsController::class,'index'])->name('panel.tags.index');
+        Route::post('',[TagsController::class,'store'])->name('panel.tags.store');
+        Route::delete('{tag_id}/destroy',[TagsController::class,'destroy'])->name('panel.tags.destroy');
     });
 });
