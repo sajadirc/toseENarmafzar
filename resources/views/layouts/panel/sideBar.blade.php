@@ -21,7 +21,7 @@
                             مدیریت کاربران
                         </button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                    <div id="collapseOne" class="accordion-collapse collapse {{ request()->is('panel/users*') ? 'show' : '' }}" aria-labelledby="headingOne"
                         data-bs-parent="#accordionExample">
 
                         <div class="accordion-body">
@@ -44,7 +44,7 @@
                             مدیریت تگ ها
                         </button>
                     </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                    <div id="collapseTwo" class="accordion-collapse collapse {{ request()->is('panel/tag*') ? 'show' : '' }}" aria-labelledby="headingTwo"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <a href="{{ route('panel.tags.index') }}">
