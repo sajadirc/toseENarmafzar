@@ -67,5 +67,8 @@ Route::prefix('panel')->middleware('auth')->group(function(){
         Route::get('',[TagsController::class,'index'])->name('panel.tags.index');
         Route::post('',[TagsController::class,'store'])->name('panel.tags.store');
         Route::delete('{tag_id}/destroy',[TagsController::class,'destroy'])->name('panel.tags.destroy');
+
+        Route::get('{tag_id}/edit',[TagsController::class,'edit'])->name('panel.tags.edit');
+        Route::put('{tag_id}/edit',[TagsController::class,'update'])->name('panel.tags.update');
     });
 });

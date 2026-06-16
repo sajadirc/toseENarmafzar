@@ -53,4 +53,37 @@ class TagsController extends Controller
             return back()->with('success', 'تگ با موفقیت حذف شد');
         return back()->with('failed', 'خطا در حذف تگ مورد نظر');
     }
+
+
+    #Edit Tag front
+    public function edit(int $tag_id){
+
+        #Find Tag
+        $tag = Tag::findOrFail($tag_id);
+
+        return view('panel.editTag',compact('tag'));
+    }
+
+    #update Tag Store
+    public function update(int $tag_id,Request $request){
+
+        #Find Tag
+        $tag = Tag::FindOrFail($tag_id);
+
+        #validate Request
+        $request->validate([
+            'name' => 'required|string|unique:tags,name,'. $tag->id,
+            'persian_name' => 'required|string|unique:tags,persian_name,'. $tag->id
+        ]);
+
+        #Update data
+        $response = $tag->update([
+            'name' => $request->name,
+            'persian_name' => $request->persian_name
+        ]);
+
+        if($response)
+            return redirect()->route('panel.tags.index')->with('success','ویرایش با موفقیت انجام شد');
+        return back()->with('failed','خطایی در ویرایش رخ داده است');
+    }
 }

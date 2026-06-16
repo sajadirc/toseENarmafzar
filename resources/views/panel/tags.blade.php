@@ -43,7 +43,7 @@
                         <td>{{ $tag->name }}</td>
                         <td>{{ $tag->persian_name }}</td>
                         <td class="d-flex justify-content-center">
-                            <a href="{{ route('panel.users.edit', $tag->id) }}" class="btn btn-sm btn-primary me-1"><i
+                            <a href="{{ route('panel.tags.edit', $tag->id) }}" class="btn btn-sm btn-primary me-1"><i
                                     class="fa fa-pen me-1"></i></a>
                             <form action="{{ route('panel.tags.destroy', $tag->id) }}" method="post">
                                 @csrf
