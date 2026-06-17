@@ -10,6 +10,7 @@
                     <th>عنوان</th>
                     <th>توضیح کوتاه</th>
                     <th>عکس</th>
+                    <th>نویسنده</th>
                     <th>عملیات</th>
                 </tr>
             </thead>
@@ -20,6 +21,7 @@
                         <td>{{ $new->title }}</td>
                         <td>{{ $new->summary }}</td>
                         <td><img src="/{{ $new->image_url }}" alt="" width="80"></td>
+                        <td>{{ $new->user?->name }}</td>
                         <td class="d-flex justify-content-center">
                             <a href="{{ route('panel.news.edit', $new->id) }}" class="btn btn-sm btn-primary me-1"><i
                                     class="fa fa-pen me-1"></i></a>

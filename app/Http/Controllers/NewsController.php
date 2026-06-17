@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MakeNewsRequest;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,16 +32,10 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MakeNewsRequest $request)
     {
         #Validate Data Here
-        $request->validate([
-            'title' => 'required|string',
-            'summary' => 'required|string',
-            'desc' => 'required',
-            'image' => 'required|file|mimes:png,jpg,jpeg'
-        ]);
-
+        $validated_data = $request->validated();
 
         #find User
         $user = Auth::user();
@@ -53,22 +48,11 @@ class NewsController extends Controller
             'user_id' => $user->id
         ]);
 
-        #Attach Image
-        // $path = $request->file('image')->store('news', 'public');
-        // dd($path);
+
         # Upload Image
         $image = $request->file('image');
+        $this->imageUploader($image, $news);
 
-        $fileName = time() . '.' . $image->getClientOriginalExtension();
-
-        $image->move(public_path('uploads'), $fileName);
-
-
-        $news->update([
-            'image_url' => 'uploads/' . $fileName
-        ]);
-        $news->save();
-        // Storage::disk('local')->put($request->image,$request->image);
         if ($news)
             return back()->with('success', 'خبر جدید با موفقیت افزوده شد');
         return back()->with('failed', 'خطا در افزودن خبر');
@@ -111,20 +95,13 @@ class NewsController extends Controller
 
 
         if ($request->has('image')) {
+            #delete older Image From Storage
             if ($new->image_url)
                 unlink(public_path($new->image_url));
 
             $image = $request->file('image');
 
-            $fileName = time() . '.' . $image->getClientOriginalExtension();
-
-            $image->move(public_path('uploads'), $fileName);
-
-
-            $new->update([
-                'image_url' => 'uploads/' . $fileName
-            ]);
-            $new->save();
+            $this->imageUploader($image, $new);
         }
         #update request data
         $result = $new->update([
@@ -154,9 +131,9 @@ class NewsController extends Controller
         return back()->with('failed', 'خظا در حذف خبر');
     }
 
-    private function imageUploader(Request $request,News $new)
+    #image Uploader func
+    private function imageUploader($image, News $new)
     {
-        $image = $request->file('image');
 
         $fileName = time() . '.' . $image->getClientOriginalExtension();
 
