@@ -4,7 +4,7 @@
 @section('content')
     <div class="bg-light rounded p-3">
         <h4 class="border-start border-primary border-4  text-dark p-2 ps-1 h-6 ms-1  mb-4 fw-bold">افزودن خبر</h4>
-        <form class="form-control form p-2 " action="{{ route('panel.users.store') }}" method="post">
+        <form class="form-control form p-2 " action="{{ route('panel.news.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             {{-- name here --}}

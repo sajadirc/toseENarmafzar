@@ -77,6 +77,11 @@
                                 <i class="fa-solid fa-plus pe-1"></i>
                                 افزودن خبر</a>
                         </div>
+                        <div class="accordion-body">
+                            <a href="{{ route('panel.news.index') }}">
+                                <i class="fa-solid fa-list pe-1"></i>
+                                لیست اخبار</a>
+                        </div>
 
                     </div>
                 </div>

@@ -76,5 +76,8 @@ Route::prefix('panel')->middleware('auth')->group(function(){
     #Rss RouTes
     Route::prefix('news')->group(function(){
         Route::get('create',[NewsController::class,'create'])->name('panel.news.create');
+        Route::post('create',[NewsController::class,'store'])->name('panel.news.store');
+
+        Route::get('index',[NewsController::class, 'index'])->name('panel.news.index');
     });
 });
