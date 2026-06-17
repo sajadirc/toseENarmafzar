@@ -13,6 +13,7 @@
 
         <div class="menu">
             <div class="accordion" id="accordionExample">
+                {{-- User Manager Here --}}
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -21,8 +22,9 @@
                             مدیریت کاربران
                         </button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse {{ request()->is('panel/users*') ? 'show' : '' }}" aria-labelledby="headingOne"
-                        data-bs-parent="#accordionExample">
+                    <div id="collapseOne"
+                        class="accordion-collapse collapse {{ request()->is('panel/users*') ? 'show' : '' }}"
+                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 
                         <div class="accordion-body">
                             <a href="{{ route('panel.users.add') }}">
@@ -37,6 +39,8 @@
 
                     </div>
                 </div>
+
+                {{-- Tag Manager Here --}}
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -44,8 +48,9 @@
                             مدیریت تگ ها
                         </button>
                     </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse {{ request()->is('panel/tag*') ? 'show' : '' }}" aria-labelledby="headingTwo"
-                        data-bs-parent="#accordionExample">
+                    <div id="collapseTwo"
+                        class="accordion-collapse collapse {{ request()->is('panel/tag*') ? 'show' : '' }}"
+                        aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <a href="{{ route('panel.tags.index') }}">
                                 <i class="fa-solid fa-hashtag pe-1"></i>
@@ -55,6 +60,26 @@
                     </div>
                 </div>
 
+                {{-- RSS Manager Here --}}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo1">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
+                            <i class="fa-solid fa-newspaper pe-2"></i>
+                            مدیریت اخبار
+                        </button>
+                    </h2>
+                    <div id="collapseTwo1"
+                        class="accordion-collapse collapse {{ request()->is('panel/news*') ? 'show' : '' }}"
+                        aria-labelledby="headingTwo1" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <a href="{{ route('panel.news.create') }}">
+                                <i class="fa-solid fa-plus pe-1"></i>
+                                افزودن خبر</a>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
 </div>

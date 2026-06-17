@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\Users\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -70,5 +71,10 @@ Route::prefix('panel')->middleware('auth')->group(function(){
 
         Route::get('{tag_id}/edit',[TagsController::class,'edit'])->name('panel.tags.edit');
         Route::put('{tag_id}/edit',[TagsController::class,'update'])->name('panel.tags.update');
+    });
+
+    #Rss RouTes
+    Route::prefix('news')->group(function(){
+        Route::get('create',[NewsController::class,'create'])->name('panel.news.create');
     });
 });
