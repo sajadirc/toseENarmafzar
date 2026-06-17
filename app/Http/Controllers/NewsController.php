@@ -96,7 +96,7 @@ class NewsController extends Controller
 
         if ($request->has('image')) {
             #delete older Image From Storage
-            if ($new->image_url)
+            if ($new->image_url && file_exists(public_path($new->image_url)))
                 unlink(public_path($new->image_url));
 
             $image = $request->file('image');
