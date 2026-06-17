@@ -21,7 +21,7 @@
                         <td>{{ $new->summary }}</td>
                         <td><img src="/{{ $new->image_url }}" alt="" width="80"></td>
                         <td class="d-flex justify-content-center">
-                            <a href="{{ route('panel.users.edit', $new->id) }}" class="btn btn-sm btn-primary me-1"><i
+                            <a href="{{ route('panel.news.edit', $new->id) }}" class="btn btn-sm btn-primary me-1"><i
                                     class="fa fa-pen me-1"></i></a>
                             <form action="{{ route('panel.news.destroy', $new->id) }}" method="post">
                                 @csrf

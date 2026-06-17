@@ -87,7 +87,10 @@ class NewsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        #Find New
+        $new  = News::findOrFail($id);
+
+        return view('panel.news.edit', compact('new'));
     }
 
     /**
@@ -95,7 +98,44 @@ class NewsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        #find New
+        $new = News::findOrFail($id);
+
+        #validate New
+        $request->validate([
+            'title' => 'required|string',
+            'summary' => 'required|string',
+            'desc' => 'required',
+            'image' => 'file|mimes:png,jpg,jpeg|nullable'
+        ]);
+
+
+        if ($request->has('image')) {
+            if ($new->image_url)
+                unlink(public_path($new->image_url));
+
+            $image = $request->file('image');
+
+            $fileName = time() . '.' . $image->getClientOriginalExtension();
+
+            $image->move(public_path('uploads'), $fileName);
+
+
+            $new->update([
+                'image_url' => 'uploads/' . $fileName
+            ]);
+            $new->save();
+        }
+        #update request data
+        $result = $new->update([
+            'title' => $request->title,
+            'summary' => $request->summary,
+            'desc' => $request->desc,
+
+        ]);
+        if ($result)
+            return back()->with('success', 'خبر با موفقیت ویرایش شد');
+        return back()->with('failed', 'خطا در ویرایش خبر');
     }
 
     /**
@@ -112,5 +152,20 @@ class NewsController extends Controller
         if ($result)
             return back()->with('success', 'خبر با موفقیت حذف شد');
         return back()->with('failed', 'خظا در حذف خبر');
+    }
+
+    private function imageUploader(Request $request,News $new)
+    {
+        $image = $request->file('image');
+
+        $fileName = time() . '.' . $image->getClientOriginalExtension();
+
+        $image->move(public_path('uploads'), $fileName);
+
+
+        $new->update([
+            'image_url' => 'uploads/' . $fileName
+        ]);
+        $new->save();
     }
 }

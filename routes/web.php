@@ -81,5 +81,8 @@ Route::prefix('panel')->middleware('auth')->group(function(){
         Route::get('index',[NewsController::class, 'index'])->name('panel.news.index');
 
         Route::delete('{news_id}/delete',[NewsController::class,'destroy'])->name('panel.news.destroy');
+
+        Route::get('{news_id}/edit',[NewsController::class,'edit'])->name('panel.news.edit');
+        Route::put('{news_id}/edit',[NewsController::class,'update'])->name('panel.news.update');
     });
 });
