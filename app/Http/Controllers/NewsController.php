@@ -17,7 +17,7 @@ class NewsController extends Controller
         #get news and Sort It
         $news = News::orderByDesc('created_at')->paginate(10);
 
-        return view('panel.news.all',compact('news'));
+        return view('panel.news.all', compact('news'));
     }
 
     /**
@@ -103,6 +103,14 @@ class NewsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        #find A News
+        $new = News::findOrFail($id);
+
+        #Delete news
+        $result = $new->delete();
+
+        if ($result)
+            return back()->with('success', 'خبر با موفقیت حذف شد');
+        return back()->with('failed', 'خظا در حذف خبر');
     }
 }

@@ -23,7 +23,7 @@
                         <td class="d-flex justify-content-center">
                             <a href="{{ route('panel.users.edit', $new->id) }}" class="btn btn-sm btn-primary me-1"><i
                                     class="fa fa-pen me-1"></i></a>
-                            <form action="{{ route('panel.users.destroy', $new->id) }}" method="post">
+                            <form action="{{ route('panel.news.destroy', $new->id) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-sm btn-danger">

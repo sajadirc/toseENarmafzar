@@ -79,5 +79,7 @@ Route::prefix('panel')->middleware('auth')->group(function(){
         Route::post('create',[NewsController::class,'store'])->name('panel.news.store');
 
         Route::get('index',[NewsController::class, 'index'])->name('panel.news.index');
+
+        Route::delete('{news_id}/delete',[NewsController::class,'destroy'])->name('panel.news.destroy');
     });
 });
